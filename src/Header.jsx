@@ -1,0 +1,53 @@
+import { Link } from "react-router-dom";
+import { useContext, useEffect, } from "react";
+import { UserContext } from "./UserContext";
+
+export default function Header() {
+  const { setUserInfo, userInfo } = useContext(UserContext);
+  const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
+  
+  useEffect(() => {
+    fetch(BLOG_ENDPOINT + '/profile', {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: 'include',
+    }).then(response => {
+      response.json().then(userInfo => {
+        setUserInfo(userInfo);
+      })
+    });
+  }, []);
+
+
+  function logout() {
+    fetch(BLOG_ENDPOINT + '/logout', {
+      credentials: 'include',
+      method: 'POST',
+    });
+    setUserInfo(null);
+  }
+
+  const username = userInfo?.username;
+
+  return (
+    <header>
+      <Link to="/" className="logo">:DevBlog</Link>
+      <nav>
+        {username && (
+          <>
+            <Link to="/create">Create new post</Link>
+            <span onClick={logout}>Logout ({username})</span>
+          </>
+        )}
+        {!username && (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+          </>
+        )}
+      </nav>
+    </header>
+  );
+}
