@@ -11,22 +11,27 @@ export default function CreatePost() {
   const [content, setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
+  const [cookies] = useCookies();
 
   async function createNewPost(ev) {
+    ev.preventDefault();
+
     const data = new FormData();
-    const token = cookies.token;
     data.set('title', title);
     data.set('summary', summary);
     data.set('content', content);
     data.set('file', files[0]);
-    ev.preventDefault();
+    
+    const token = cookies.token;
     const response = await fetch(BLOG_ENDPOINT + '/post', {
       method: 'POST',
-      headers: { Authentication: `Bearer ${token}` },
+      headers: {
+        Authentication: `Bearer ${token}`
+      },
       body: data,
-      // credentials: 'include',
+      credentials: 'include',
     });
-    console.log(response.json())
+
     if (response.ok) {
       setRedirect(true);
     }

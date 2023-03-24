@@ -79,6 +79,13 @@ div.post p.info a.author {
 div.post p.summary {
     margin: 10px 0;
     line-height: 1.8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
 }
 
 form.login, form.register {
