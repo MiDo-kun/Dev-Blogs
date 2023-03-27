@@ -30,6 +30,7 @@ export default function CreatePost() {
       },
       body: data,
       credentials: 'include',
+      // mode: 'no-cors',
     });
 
     if (response.ok) {

@@ -12,8 +12,9 @@ img {
 
 main {
     padding: 10px;
-    max-width: 960px;
+    max-width: 930px;
     margin: 0 auto;
+    text-align: justify;
 }
 
 header {
@@ -30,8 +31,8 @@ header a {
 }
 
 header a.logo {
-    font-weight: bold;
-    font-size: 1.5rem;
+    font-weight: 600;
+    font-size: 1.4rem;
 }
 
 header nav {
@@ -54,7 +55,7 @@ div.post {
 
 div.post div.texts h2 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-family: 'Georgia', 'Roboto', sans-serif;
 }
 
@@ -72,7 +73,9 @@ div.post p.info {
     gap: 10px;
 }
 
-div.post p.info a.author {
+div.post p.author {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     color: #333;
 }
 
@@ -118,8 +121,13 @@ form.login h1, form.register h1 {
     text-align: center;
 }
 
+div.post-page {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 div.post-page div.image {
-    max-height: 300px;
+    max-height: 180px;
     display: flex;
     overflow: hidden;
 }
@@ -137,7 +145,13 @@ div.post-page a {
 
 div.post-page h1 {
     text-align: center;
+    font-family: 'Georgia', 'Roboto', sans-serif;
     margin: 10px 0 5px;
+    font-size: 1.6rem;
+}
+
+div.post-page h2 {
+    font-size: 1.1rem;
 }
 
 div.post-page time {
@@ -152,12 +166,21 @@ div.post-page div.author {
     text-align: center;
     margin-bottom: 20px;
     font-size: .7rem;
-    font-weight: bold;
+    font-weight: 900;
+}
+
+div.post-page .ql-syntax {
+    background-color: #111;
+    color: white;
+    padding: 4px 10px;
+    font-family: 'Azeret Mono';
+    font-size: .8rem;
 }
 
 div.content p {
-    line-height: 1rem;
-    /* margin: 5px 0; */
+    line-height: 1.8rem;
+    margin: 5px 0;
+    word-wrap: break-word;
 }
 
 div.content li {
@@ -184,8 +207,29 @@ a svg {
     height: 20px;
 }
 
+/* Default styles for the <pre> element */
+pre {
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+
+
 @media only screen and (max-width: 426px) {
     header {
         padding: 0 10px !important;
+    }
+
+    div.post div.texts h2 {
+        font-size: 1.3rem;
+    }
+
+    div.post {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    pre {
+        width: 100%;
+        overflow-x: unset;
     }
 }
