@@ -2,6 +2,11 @@ a {
     cursor: pointer;
 }
 
+strong,
+code {
+    font-family: 'Azeret Mono', sans-serif;
+}
+
 body {
     color: #222;
 }
@@ -32,6 +37,7 @@ header a {
 
 header a.logo {
     font-weight: 600;
+    font-family: 'Azeret Mono';
     font-size: 1.4rem;
 }
 
