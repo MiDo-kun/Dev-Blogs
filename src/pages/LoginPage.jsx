@@ -30,6 +30,7 @@ export default function LoginPage() {
   if (redirect) {
     return <Navigate to={'/'} />
   }
+
   return (
     <form className="login" onSubmit={login}>
       <h1>Login</h1>
