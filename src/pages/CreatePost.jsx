@@ -23,7 +23,6 @@ export default function CreatePost() {
     data.set('file', files[0]);
 
     const token = cookies.token;
-    console.log(token)
     const response = await fetch(BLOG_ENDPOINT + '/post', {
       method: 'POST',
       headers: {
