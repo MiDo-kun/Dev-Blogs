@@ -21,11 +21,12 @@ export default function CreatePost() {
     data.set('summary', summary);
     data.set('content', content);
     data.set('file', files[0]);
-    
+
     const token = cookies.token;
     const response = await fetch(BLOG_ENDPOINT + '/post', {
       method: 'POST',
       headers: {
+        Origin: BLOG_ENDPOINT,
         Authentication: `Bearer ${token}`
       },
       body: data,
