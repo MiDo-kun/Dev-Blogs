@@ -8,7 +8,6 @@ export default function IndexPage() {
 
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetch(BLOG_ENDPOINT + '/post').then(response => {
@@ -22,14 +21,11 @@ export default function IndexPage() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  // Filter the posts based on the search query
-  const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()));
-
   // Get the posts to display on the current page
-  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   // Calculate the total number of pages based on the number of posts and posts per page
-  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const totalPages = Math.ceil(posts.length / postsPerPage);
 
   // Handle pagination button clicks
   const handlePrevClick = () => {
@@ -39,13 +35,14 @@ export default function IndexPage() {
   const handleNextClick = () => {
     setCurrentPage(currentPage + 1);
   };
+
   return (
     <>
       <Profile />
       {currentPosts.length > 0 ? (
         currentPosts.map(post => (
           <Post key={post._id} {...post} />
-        ))) : <p className="text-xs text-gray-200">Fething Blogs...</p>}
+        ))) : <p className="text-xs text-gray-200">Fetching Blogs...</p>}
       {totalPages > 1 && (
         <div className="flex justify-end gap-2 mt-2">
           <button

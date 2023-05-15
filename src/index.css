@@ -51,6 +51,6 @@ pre {
 
 @media (max-width: 425px) {
   html {
-    zoom: 0.73; /* adjust the zoom level as needed */
+    zoom: 0.73;
   }
 }

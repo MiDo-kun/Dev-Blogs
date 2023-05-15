@@ -39,19 +39,19 @@ export default function CreatePost() {
   }
 
   return (
-    <form onSubmit={createNewPost}>
-      <input type="title"
+    <form onSubmit={createNewPost} className="mt-10 flex flex-col">
+      <input type="title" className="my-1 px-2 py-1"
         placeholder={'Title'}
         value={title}
         onChange={ev => setTitle(ev.target.value)} />
-      <input type="summary"
+      <input type="summary" className="my-1 px-2 py-1"
         placeholder={'Summary'}
         value={summary}
         onChange={ev => setSummary(ev.target.value)} />
-      <input type="file"
+      <input type="file" className="my-1 text-white"
         onChange={ev => setFiles(ev.target.files)} />
       <Editor value={content} onChange={setContent} />
-      <button type="submit" style={{ marginTop: '5px' }} >Create post</button>
+      <button type="submit" className="w-1/4 mx-auto mt-5 text-white text-sm rounded-sm px-1 py-1 outline outline-gray-400 hover:text-gray-400" >Create post</button>
     </form>
   );
 }

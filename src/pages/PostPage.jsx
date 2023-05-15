@@ -10,7 +10,6 @@ export default function PostPage() {
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   const navigateTo = useNavigate();
-
   useEffect(() => {
     fetch(BLOG_ENDPOINT + `/post/${id}`)
       .then(response => {
@@ -28,7 +27,7 @@ export default function PostPage() {
 
   const datePosted = new Date(postInfo.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   return (
-    <div className="mx-auto w-[450px] mt-10">
+    <div className="mx-auto w-[445px] mt-10">
       <div className="mb-5 text-white">
         <h1 className="text-xl font-semibold">{postInfo.title}</h1>
         <div className="text-sm my-1 ml-[.04rem]">At {datePosted}</div>
@@ -44,10 +43,7 @@ export default function PostPage() {
         </div>
       )}
 
-      {/* <div className="image">
-        <img src={`${BLOG_ENDPOINT}/${postInfo.cover}`} alt="" />
-      </div> */}
-      <div className="text-base" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+     <div className="text-base text-justify" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
       <button className="flex items-center text-blue-400 mt-3 hover:underline" onClick={handleBack}>
         Back
       </button>

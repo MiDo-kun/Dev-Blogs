@@ -45,7 +45,7 @@ export default function LoginPage() {
         placeholder="Password"
         value={password}
         onChange={ev => setPassword(ev.target.value)} />
-      <button type="submit" className="w-1/3 mt-3 outline outline-gray-500 px-2 py-1 text-sm hover:text-black hover:bg-gray-400">Login</button>
+      <button type="submit" className="w-1/3 mx-auto mt-3 outline outline-1 outline-gray-500 px-2 py-1 font-bold text-sm hover:text-black hover:bg-gray-400">Login</button>
     </form>
   );
 }
