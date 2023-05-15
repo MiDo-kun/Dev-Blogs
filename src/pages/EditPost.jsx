@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "../Editor";
-import { useCookies } from 'react-cookie';
 
 export default function EditPost() {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
@@ -11,8 +10,6 @@ export default function EditPost() {
   const [content, setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const [cookies] = useCookies();
-  const token = cookies.token;
 
   useEffect(() => {
     fetch(BLOG_ENDPOINT + '/post/' + id)
@@ -37,10 +34,10 @@ export default function EditPost() {
     }
     const response = await fetch(BLOG_ENDPOINT + '/post', {
       method: 'PUT',
-      headers: { Authentication: `Bearer ${token}` },
       body: data,
-      // credentials: 'include',
+      credentials: 'include',
     });
+
     if (response.ok) {
       setRedirect(true);
     }
