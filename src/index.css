@@ -48,3 +48,10 @@ pre {
   color: white;
   background-color: #272822;
 }
+
+
+@media (max-width: 400px) {
+  html {
+    zoom: 0.8; /* adjust the zoom level as needed */
+  }
+}
