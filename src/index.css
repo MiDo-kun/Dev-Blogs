@@ -50,8 +50,8 @@ pre {
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 425px) {
   html {
-    zoom: 0.8; /* adjust the zoom level as needed */
+    zoom: 0.7; /* adjust the zoom level as needed */
   }
 }
