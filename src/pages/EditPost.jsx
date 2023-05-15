@@ -48,19 +48,19 @@ export default function EditPost() {
   }
 
   return (
-    <form onSubmit={updatePost}>
-      <input type="title"
+    <form onSubmit={updatePost} className="mt-10 flex flex-col">
+      <input type="title" className="my-1 px-2 py-1"
         placeholder={'Title'}
         value={title}
         onChange={ev => setTitle(ev.target.value)} />
-      <input type="summary"
+      <input type="summary" className="my-1 px-2 py-1"
         placeholder={'Summary'}
         value={summary}
         onChange={ev => setSummary(ev.target.value)} />
-      <input type="file"
+      <input type="file" className="my-1 text-white"
         onChange={ev => setFiles(ev.target.files)} />
       <Editor onChange={setContent} value={content} />
-      <button style={{ marginTop: '5px' }}>Update post</button>
+      <button className="w-1/4 mx-auto mt-5 text-white text-sm rounded-sm px-1 py-1 outline outline-gray-400 hover:text-gray-400 ">Update post</button>
     </form>
   );
 }

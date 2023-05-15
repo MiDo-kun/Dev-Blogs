@@ -28,21 +28,24 @@ export default function LoginPage() {
   }
 
   if (redirect) {
+    alert("Login Sucessfully!");
     return <Navigate to={'/'} />
   }
 
   return (
-    <form className="login" onSubmit={login}>
-      <h1>Login</h1>
+    <form className="flex flex-col w-4/6 mx-auto text-white text-center" onSubmit={login}>
+      <h1 className="text-2xl font-bold my-4">Login</h1>
       <input type="text"
+        className="px-2 py-1 my-2"
         placeholder="Username"
         value={username}
         onChange={ev => setUsername(ev.target.value)} />
       <input type="password"
+        className="px-2 py-1 my-1"
         placeholder="Password"
         value={password}
         onChange={ev => setPassword(ev.target.value)} />
-      <button>Login</button>
+      <button type="submit" className="w-1/3 mt-3 outline outline-gray-500 px-2 py-1 text-sm hover:text-black hover:bg-gray-400">Login</button>
     </form>
   );
 }

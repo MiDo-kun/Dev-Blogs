@@ -45,7 +45,7 @@ export default function IndexPage() {
       {currentPosts.length > 0 ? (
         currentPosts.map(post => (
           <Post key={post._id} {...post} />
-        ))) : <p className="text-xs text-gray-200">No posts to display.</p>}
+        ))) : <p className="text-xs text-gray-200">Fething Blogs...</p>}
       {totalPages > 1 && (
         <div className="flex justify-end gap-2 mt-2">
           <button
