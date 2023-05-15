@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-export default function Post({ _id, title, cover, createdAt }) {
+export default function Post({ _id, title, cover, createdAt, readingTime }) {
+
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
   const datePosted = new Date(createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   return (
@@ -17,7 +18,7 @@ export default function Post({ _id, title, cover, createdAt }) {
         <div className="flex gap-3">
           {/* <p className="author font-bold">- {author.username}</p> */}
           <time className="text-xs text-gray-400">{datePosted}</time>
-          <span className="text-xs text-gray-400">10,243 views</span>
+          <span className="text-xs text-gray-400">{readingTime} min. read</span>
         </div>
       </div>
     </div >

@@ -2,6 +2,13 @@ import Post from "../Post";
 import { useEffect, useState } from "react";
 import Profile from './../Profile'
 
+function getReadingTime(content) {
+  const wordsPerMinute = 200; // Average reading speed in words per minute
+  const wordCount = content.split(/\s+/).length; // Split the content into words and count them
+  const readingTime = Math.ceil(wordCount / wordsPerMinute); // Calculate the reading time in minutes
+  return readingTime;
+}
+
 export default function IndexPage() {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
   const postsPerPage = 5;
@@ -41,8 +48,8 @@ export default function IndexPage() {
       <Profile />
       {currentPosts.length > 0 ? (
         currentPosts.map(post => (
-          <Post key={post._id} {...post} />
-        ))) : <p className="text-xs text-gray-200">Fetching Blogs...</p>}
+          <Post key={post._id} {...post} readingTime={getReadingTime(post.content)} />
+        ))) : <p className="text-xs text-gray-200Fetching Blogs..."></p>}
       {totalPages > 1 && (
         <div className="flex justify-end gap-2 mt-2">
           <button

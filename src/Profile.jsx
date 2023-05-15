@@ -8,7 +8,7 @@ const Profile = () => {
             <h1 className="text-[1.8rem] font-black tracking-wider">Jerson Dela Cerna</h1>
             <h3 className="text-base ml-[.04rem]">A self-taught web developer.</h3>
           </div>
-          <div className="flex gap-2 ml-[.04rem] -mt-4 text-sm">
+          <div className="flex gap-2 ml-[.04rem] -mt-3 text-sm">
             <a href="https://jerson-dela-cerna.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Portfolio</a>
             <span className="text-slate-400 cursor-pointer hover:underline">|</span>
             <a href="https://github.com/MiDo-kun" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Github</a>

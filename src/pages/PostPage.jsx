@@ -7,9 +7,11 @@ export default function PostPage() {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
 
   const [postInfo, setPostInfo] = useState(null);
+  const [allPosts, setAllPosts] = useState([]);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
-  const navigateTo = useNavigate();
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch(BLOG_ENDPOINT + `/post/${id}`)
       .then(response => {
@@ -17,15 +19,29 @@ export default function PostPage() {
           setPostInfo(postInfo);
         });
       });
+
+    fetch(BLOG_ENDPOINT + '/post')
+      .then(response => {
+        response.json().then(posts => {
+          setAllPosts(posts);
+        });
+      });
   }, []);
 
   const handleBack = () => {
-    navigateTo('/');
+    navigate('/');
   };
 
   if (!postInfo) return '';
 
   const datePosted = new Date(postInfo.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  // Find the index of the current post in the list of all posts
+  const currentIndex = allPosts.findIndex(post => post._id === postInfo._id);
+
+  // Get the next post, or null if there is no next post
+  const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
   return (
     <div className="mx-auto w-[445px] mt-10">
       <div className="mb-5 text-white">
@@ -43,10 +59,17 @@ export default function PostPage() {
         </div>
       )}
 
-     <div className="text-base text-justify" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
-      <button className="flex items-center text-blue-400 mt-3 hover:underline" onClick={handleBack}>
-        Back
-      </button>
+      <div className="text-base text-justify" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+      <div className="flex justify-between mt-3">
+        <button className="flex items-center text-blue-400 mt-3 hover:underline" onClick={handleBack}>
+          Back
+        </button>
+        {nextPost && (
+          <a href={`/post/${nextPost._id}`} className="flex items-center text-blue-400 hover:underline" onClick={() => window.location.href = `/post/${nextPost._id}`}>
+            <span>Next</span>
+          </a>
+        )}
+      </div>
     </div>
   );
 }
