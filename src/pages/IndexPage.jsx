@@ -49,7 +49,7 @@ export default function IndexPage() {
       {currentPosts.length > 0 ? (
         currentPosts.map(post => (
           <Post key={post._id} {...post} readingTime={getReadingTime(post.content)} />
-        ))) : <p className="text-xs text-gray-200Fetching Blogs..."></p>}
+        ))) : <p className="text-xs text-gray-200">Fetching Blogs...</p>}
       {totalPages > 1 && (
         <div className="flex justify-end gap-2 mt-2">
           <button

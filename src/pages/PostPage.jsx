@@ -45,6 +45,7 @@ export default function PostPage() {
   return (
     <div className="mx-auto w-[445px] mt-10">
       <div className="mb-5 text-white">
+      {!allPosts && <p className="text-xs text-gray-200">Fetching Blogs...</p>}
         <h1 className="text-xl font-semibold text-amber-400">{postInfo.title}</h1>
         <div className="text-sm my-1 ml-[.04rem] text-red-500">At {datePosted}</div>
       </div>
