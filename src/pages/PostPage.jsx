@@ -65,9 +65,9 @@ export default function PostPage() {
           Back
         </button>
         {nextPost && (
-          <Link to={`/post/${postInfo._id}`}>
-            <span className="flex items-center text-blue-400 hover:underline" >Next</span>
-          </Link>
+          <a href={`${window.location.origin}/post/${nextPost._id}`} className="flex items-center text-blue-400 hover:underline" onClick={() => window.location.href = `${window.location.origin}/post/${nextPost._id}`}>
+            Next
+          </a>
         )}
       </div>
     </div>
