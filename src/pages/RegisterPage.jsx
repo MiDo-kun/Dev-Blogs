@@ -6,7 +6,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('');
   async function register(ev) {
     ev.preventDefault();
-    const response = await fetch(BLOG_ENDPOINT + '/register', {
+    const response = await fetch(BLOG_ENDPOINT + '/auth/register', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },

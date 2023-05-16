@@ -20,7 +20,7 @@ export default function CreatePost() {
     data.set('content', content);
     data.set('file', files[0]);
 
-    const response = await fetch(BLOG_ENDPOINT + '/post', {
+    const response = await fetch(BLOG_ENDPOINT + '/posts', {
       method: 'POST',
       headers: {
         Origin: BLOG_ENDPOINT,

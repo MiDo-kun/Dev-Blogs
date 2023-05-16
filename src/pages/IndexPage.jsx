@@ -17,7 +17,7 @@ export default function IndexPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    fetch(BLOG_ENDPOINT + '/post').then(response => {
+    fetch(BLOG_ENDPOINT + '/posts').then(response => {
       response.json().then(posts => {
         setPosts(posts);
       });

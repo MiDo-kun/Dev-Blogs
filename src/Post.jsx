@@ -2,13 +2,12 @@ import { Link } from "react-router-dom";
 
 export default function Post({ _id, title, cover, createdAt, readingTime }) {
 
-  const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
   const datePosted = new Date(createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   return (
     <div className="flex gap-3 mb-5 bg-slate-950 p-5 rounded text-white">
       <div className="w-1/3">
         <Link to={`/post/${_id}`}>
-          <img src={BLOG_ENDPOINT + "/" + cover} alt={title} />
+          <img src={cover} alt={title} />
         </Link>
       </div>
       <div className="flex flex-col justify-between w-2/3">

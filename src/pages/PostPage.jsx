@@ -13,14 +13,14 @@ export default function PostPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(BLOG_ENDPOINT + `/post/${id}`)
+    fetch(BLOG_ENDPOINT + `/posts/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
         });
       });
 
-    fetch(BLOG_ENDPOINT + '/post')
+    fetch(BLOG_ENDPOINT + '/posts')
       .then(response => {
         response.json().then(posts => {
           setAllPosts(posts);
@@ -45,8 +45,8 @@ export default function PostPage() {
   return (
     <div className="mx-auto w-[445px] mt-10">
       <div className="mb-5 text-white">
-        <h1 className="text-xl font-semibold">{postInfo.title}</h1>
-        <div className="text-sm my-1 ml-[.04rem]">At {datePosted}</div>
+        <h1 className="text-xl font-semibold text-amber-400">{postInfo.title}</h1>
+        <div className="text-sm my-1 ml-[.04rem] text-red-500">At {datePosted}</div>
       </div>
       {userInfo.id === postInfo.author._id && (
         <div className="flex justify-center text-white">

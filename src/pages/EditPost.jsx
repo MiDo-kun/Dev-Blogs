@@ -12,7 +12,7 @@ export default function EditPost() {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch(BLOG_ENDPOINT + '/post/' + id)
+    fetch(BLOG_ENDPOINT + '/posts/' + id)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -32,7 +32,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch(BLOG_ENDPOINT + '/post', {
+    const response = await fetch(BLOG_ENDPOINT + '/posts', {
       method: 'PUT',
       body: data,
       credentials: 'include',
