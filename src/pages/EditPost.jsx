@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "../Editor";
-import { useCookies } from 'react-cookie';
 
 export default function EditPost() {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
@@ -11,11 +10,9 @@ export default function EditPost() {
   const [content, setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const [cookies] = useCookies();
-  const token = cookies.token;
 
   useEffect(() => {
-    fetch(BLOG_ENDPOINT + '/post/' + id)
+    fetch(BLOG_ENDPOINT + '/posts/' + id)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -35,12 +32,12 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch(BLOG_ENDPOINT + '/post', {
+    const response = await fetch(BLOG_ENDPOINT + '/posts', {
       method: 'PUT',
-      headers: { Authentication: `Bearer ${token}` },
       body: data,
-      // credentials: 'include',
+      credentials: 'include',
     });
+
     if (response.ok) {
       setRedirect(true);
     }
@@ -51,19 +48,19 @@ export default function EditPost() {
   }
 
   return (
-    <form onSubmit={updatePost}>
-      <input type="title"
+    <form onSubmit={updatePost} className="mt-10 flex flex-col">
+      <input type="title" className="my-1 px-2 py-1"
         placeholder={'Title'}
         value={title}
         onChange={ev => setTitle(ev.target.value)} />
-      <input type="summary"
+      <input type="summary" className="my-1 px-2 py-1"
         placeholder={'Summary'}
         value={summary}
         onChange={ev => setSummary(ev.target.value)} />
-      <input type="file"
+      <input type="file" className="my-1 text-white"
         onChange={ev => setFiles(ev.target.files)} />
       <Editor onChange={setContent} value={content} />
-      <button style={{ marginTop: '5px' }}>Update post</button>
+      <button className="w-1/4 mx-auto mt-5 text-white text-sm rounded-sm px-1 py-1 outline outline-gray-400 hover:text-gray-400">Update post</button>
     </form>
   );
 }

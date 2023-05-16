@@ -1,25 +1,24 @@
-import { formatISO9075 } from "date-fns";
 import { Link } from "react-router-dom";
 
-export default function Post({ _id, title, summary, cover, createdAt, author }) {
-  const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
+export default function Post({ _id, title, cover, createdAt, readingTime }) {
 
+  const datePosted = new Date(createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   return (
-    <div className="post">
-      <div className="image">
+    <div className="flex gap-3 mb-5 bg-slate-950 p-5 rounded text-white">
+      <div className="w-1/3">
         <Link to={`/post/${_id}`}>
-          <img src={BLOG_ENDPOINT + "/" + cover} alt="" />
+          <img src={cover} alt={title} />
         </Link>
       </div>
-      <div className="texts">
+      <div className="flex flex-col justify-between w-2/3">
         <Link to={`/post/${_id}`}>
-          <h2>{title}</h2>
+          <h2 className="text-blue-400 hover:underline">{title}</h2>
         </Link>
-        <div className="info">
-          <p className="author">- {author.username}</p>
-          <time>{formatISO9075(new Date(createdAt))}</time>
+        <div className="flex gap-3">
+          {/* <p className="author font-bold">- {author.username}</p> */}
+          <time className="text-xs text-gray-400">{datePosted}</time>
+          <span className="text-xs text-gray-400">{readingTime} min. read</span>
         </div>
-        <p className="summary">{summary}</p>
       </div>
     </div >
   );
