@@ -1,7 +1,7 @@
 import { useState } from "react";
 const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
 
-export default function RegisterPage() {
+const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   async function register(ev) {
@@ -35,3 +35,5 @@ export default function RegisterPage() {
     </form>
   );
 }
+
+export default RegisterPage;

@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import Editor from "../Editor";
 import { useCookies } from 'react-cookie';
 
-export default function CreatePost() {
+const CreatePost = () => {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
   const [title, setTitle] = useState('');
   const [summary, setSummary] = useState('');
@@ -56,3 +56,6 @@ export default function CreatePost() {
     </form>
   );
 }
+
+
+export default CreatePost;

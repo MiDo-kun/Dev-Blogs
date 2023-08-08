@@ -26,7 +26,7 @@ export default function EditPost() {
 
   async function updatePost(ev) {
     ev.preventDefault();
-    const token = cookie.token;
+    const { token } = cookie;
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
