@@ -14,12 +14,9 @@ const DeletePost = () => {
     }
   }
   fetch(BLOG_ENDPOINT + `/posts/${id}`, data)
-    .then(response => {
+    .then(() => {
       const indexPage = window.location.origin;
-      if (response.ok) {
-        window.location = indexPage;
-      }
-
+      window.location = indexPage;
     }).catch(() => console.log("Connection Error!"));
 
   return (

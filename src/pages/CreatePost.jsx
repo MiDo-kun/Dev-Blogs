@@ -52,7 +52,7 @@ const CreatePost = () => {
       <input type="file" className="my-1 text-white"
         onChange={ev => setFiles(ev.target.files)} />
       <Editor value={content} onChange={setContent} />
-      <button type="submit" className="w-1/4 mx-auto mt-5 text-white text-sm rounded-sm px-1 py-1 outline outline-gray-400 hover:text-gray-400" >Create post</button>
+      <button type="submit" onClick={() => alert("Content Sent!")} className="w-1/4 mx-auto mt-5 text-white text-sm rounded-sm px-1 py-1 outline outline-gray-400 hover:text-gray-400" >Create post</button>
     </form>
   );
 }

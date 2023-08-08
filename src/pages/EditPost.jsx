@@ -38,7 +38,7 @@ export default function EditPost() {
     const response = await fetch(BLOG_ENDPOINT + '/posts', {
       method: 'PUT',
       headers: {
-        AuthorizatioN: `Bearer ${token}`
+        Authorization: `Bearer ${token}`
       },
       body: data,
     });
@@ -65,7 +65,7 @@ export default function EditPost() {
       <input type="file" className="my-1 text-white"
         onChange={ev => setFiles(ev.target.files)} />
       <Editor onChange={setContent} value={content} />
-      <button className="w-1/4 mx-auto mt-5 text-white text-sm rounded-sm px-1 py-1 outline outline-gray-400 hover:text-gray-400">Update post</button>
+      <button type="submit" onClick={() => alert("Content Sent!")} className="w-1/4 mx-auto mt-5 text-white text-sm rounded-sm px-1 py-1 outline outline-gray-400 hover:text-gray-400">Update post</button>
     </form>
   );
 }
