@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-export default function PostPage() {
+const PostPage = () => {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
+
   const [cookie] = useCookies();
   const [authenticated, isAuthenticated] = useState(false);
   const [postInfo, setPostInfo] = useState(null);
-  const [allPosts, setAllPosts] = useState([]);
   const [datePosted, setDatePosted] = useState(Date);
+  const [nextPost, setNextPost] = useState(null);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = cookie.token;
+    const { token } = cookie;
     fetch(BLOG_ENDPOINT + '/auth/post', {
       method: 'GET',
       headers: {
@@ -25,20 +26,20 @@ export default function PostPage() {
     fetch(BLOG_ENDPOINT + `/posts/${id}`)
       .then(response => {
         response.json().then(postInfo => {
-          console.log(postInfo);
           setPostInfo(postInfo);
 
           postInfo.createdAt = new Date(datePosted).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
           setDatePosted(postInfo.createdAt);
-
         });
       });
 
     fetch(BLOG_ENDPOINT + '/posts')
       .then(response => {
         response.json().then(posts => {
-          setAllPosts(posts);
+          const currentPostIndex = posts.findIndex(post => post._id == id);
+          const nextPostID = currentPostIndex < (posts.length - 1) ? posts[currentPostIndex + 1] : null;
+          setNextPost(nextPostID);
         });
       });
   }, []);
@@ -57,12 +58,6 @@ export default function PostPage() {
     </div>
   )
 
-  // Find the index of the current post in the list of all posts
-  const currentIndex = allPosts.findIndex(post => post._id === postInfo._id);
-
-  // Get the next post, or null if there is no next post
-  const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
-
   return (
     <div className="mx-auto w-[445px] mt-10">
       {authenticated &&
@@ -70,7 +65,7 @@ export default function PostPage() {
           <Link to={`/edit/${id}`}>
             <span className="text-blue-500">Edit</span>
           </Link>
-          <Link to={`/edit/${id}`}>
+          <Link to={`/delete/${id}`}>
             <span className="text-red-500">Delete</span>
           </Link>
         </div>
@@ -94,7 +89,8 @@ export default function PostPage() {
           </div>
         </>
       }
-
     </div>
   );
 }
+
+export default PostPage;

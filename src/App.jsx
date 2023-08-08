@@ -8,6 +8,7 @@ import CreatePost from "./pages/CreatePost";
 import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";
 import { CookiesProvider } from "react-cookie";
+import DeletePost from './pages/DeletePost';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/create" element={<CreatePost />} />
             <Route path="/post/:id" element={<PostPage />} />
             <Route path="/edit/:id" element={<EditPost />} />
+            <Route path="/delete/:id" element={<DeletePost />} />
           </Route>
         </Routes>
       </UserContextProvider>

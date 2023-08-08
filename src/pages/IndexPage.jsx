@@ -1,6 +1,5 @@
 import Post from "../Post";
 import { useEffect, useState } from "react";
-import Profile from './../Profile'
 
 function getReadingTime(content) {
   const wordsPerMinute = 200; // Average reading speed in words per minute
@@ -9,7 +8,7 @@ function getReadingTime(content) {
   return readingTime;
 }
 
-export default function IndexPage() {
+const IndexPage = () => {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
   const postsPerPage = 5;
 
@@ -21,7 +20,7 @@ export default function IndexPage() {
       response.json().then(posts => {
         setPosts(posts);
       });
-    });
+    }).catch(() => alert("Connection Error"));
   }, []);
 
   // Calculate the index of the first and last post to display on the current page
@@ -45,7 +44,6 @@ export default function IndexPage() {
 
   return (
     <>
-      <Profile />
       {currentPosts.length > 0 ? (
         currentPosts.map(post => (
           <Post key={post._id} {...post} readingTime={getReadingTime(post.content)} />
@@ -77,3 +75,5 @@ export default function IndexPage() {
     </>
   );
 }
+
+export default IndexPage;

@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import { useCookies } from "react-cookie";
 
-export default function LoginPage() {
+const LoginPage = () => {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -52,3 +52,5 @@ export default function LoginPage() {
     </form>
   );
 }
+
+export default LoginPage;

@@ -1,8 +1,11 @@
-const Profile = () => {
+const Header = () => {
+  const origin = window.location.origin;
   return (
     <header className="my-10 mx-auto text-white">
       <div className="flex gap-3">
-        <img src="./profile.jpg" alt="Profile Picture" className="w-28 h-28 rounded-full border-2 border-slate-400" />
+        <a href={origin}>
+          <img src="/profile.jpg" alt="Profile Picture" className="w-28 h-28 rounded-full border-2 border-slate-400" />
+        </a>
         <div className="flex flex-col w-2/3 justify-around">
           <div>
             <h1 className="text-[1.8rem] font-black tracking-wider text-yellow-500">Jerson Dela Cerna</h1>
@@ -21,4 +24,4 @@ const Profile = () => {
   )
 }
 
-export default Profile;
+export default Header;
