@@ -9,6 +9,7 @@ import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";
 import { CookiesProvider } from "react-cookie";
 import DeletePost from './pages/DeletePost';
+import Logout from './pages/LogoutPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<IndexPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/create" element={<CreatePost />} />
             <Route path="/post/:id" element={<PostPage />} />

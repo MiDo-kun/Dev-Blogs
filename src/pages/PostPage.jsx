@@ -21,7 +21,8 @@ const PostPage = () => {
       headers: {
         Authorization: `Bearer ${token}`
       },
-    }).then(response => response.ok && isAuthenticated(true))
+    })
+    .then(response => response.ok && isAuthenticated(true))
 
     fetch(BLOG_ENDPOINT + `/posts/${id}`)
       .then(response => {
