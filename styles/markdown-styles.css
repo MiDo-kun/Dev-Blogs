@@ -1,0 +1,64 @@
+.ql-picker.ql-font {
+  .ql-picker-item {
+    font-size: 0;
+
+    &:before {
+      content: attr(data-value) !important;
+      font-size: 14px;
+    }
+  }
+}
+
+.ql-picker.ql-font {
+  .ql-active {
+    &:before {
+      content: attr(data-value) !important;
+      font-size: 14px;
+    }
+  }
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="SansSerif"]::before,
+.ql-picker.ql-font .ql-picker-item[data-value="SansSerif"]::before {
+  font-family: "sans-serif", cursive;
+  content: "Sans Serif" !important;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="Monospace"]::before,
+.ql-picker.ql-font .ql-picker-item[data-value="Monospace"]::before {
+  font-family: "monospace", cursive;
+  content: "Monospace" !important;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="Poppins"]::before,
+.ql-picker.ql-font .ql-picker-item[data-value="Poppins"]::before {
+  font-family: "Poppins", cursive;
+  content: "Poppins" !important;
+}
+
+.ql-font-Monospace {
+  font-family: monospace;
+}
+
+.ql-font-Poppins {
+  font-family: "Poppins";
+}
+
+.ql-syntax {
+  color: #f8f8f2;
+  background-color: #111;
+  text-align: left;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 8px 11px;
+  border-radius: 5px;
+}
+
+.ql-editor pre,
+.ql-syntax {
+  font-family: 'Roboto Mono';
+}

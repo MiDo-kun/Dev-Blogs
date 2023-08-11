@@ -12,7 +12,7 @@ export default function Post({ _id, title, cover, createdAt, readingTime }) {
       </div>
       <div className="flex flex-col justify-between w-2/3">
         <Link to={`/post/${_id}`}>
-          <h2 id="blog-title" className="text-blue-800 hover:underline">{title}</h2>
+          <h2 id="blog-title" className="text-[1.04rem] text-blue-800 mb-1 -ml-[1px] font-extrabold hover:underline">{title}</h2>
         </Link>
         <div className="flex gap-3">
           {/* <p className="author font-bold">- {author.username}</p> */}

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
 import { Link, useNavigate, useParams } from "react-router-dom";
+import hljs from 'highlight.js';
+import 'highlightjs-line-numbers.js';
 
 const PostPage = () => {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
-
   const [cookie] = useCookies();
   const [authenticated, isAuthenticated] = useState(false);
   const [postInfo, setPostInfo] = useState(null);
@@ -14,6 +15,12 @@ const PostPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    hljs.highlightAll();
+    hljs.initLineNumbersOnLoad();
+  })
+
   useEffect(() => {
     const { token } = cookie;
     fetch(BLOG_ENDPOINT + '/auth/profile', {
@@ -22,15 +29,15 @@ const PostPage = () => {
         Authorization: `Bearer ${token}`
       },
     })
-    .then(response => response.ok && isAuthenticated(true))
+      .then(response => {
+        response.ok && isAuthenticated(true)
+      }).catch(err => console.log(err))
 
     fetch(BLOG_ENDPOINT + `/posts/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
-
           postInfo.createdAt = new Date(datePosted).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
           setDatePosted(postInfo.createdAt);
         })
       })
@@ -65,7 +72,7 @@ const PostPage = () => {
     )
 
   return (
-    <div className="mx-auto w-[445px] mt-10">
+    <div className="mx-auto px-[8px] mt-10">
       {authenticated &&
         <div className="flex justify-center gap-3 mb-3 text-center text-white text-md">
           <Link to={`/edit/${id}`}>
@@ -78,11 +85,12 @@ const PostPage = () => {
       }
       {postInfo &&
         <>
-          <div className="mb-5 text-white">
+          <div className="mb-5 mx text-white">
             <h1 className="text-xl font-semibold text-amber-400">{postInfo.title}</h1>
             <div className="text-sm my-1 ml-[.04rem] text-red-500">at {datePosted}</div>
           </div>
-          <div className="text-base text-justify" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+          <div className="text-base text-justify" dangerouslySetInnerHTML={{ __html: postInfo.content}} >
+          </div>
           <div className="flex justify-between mt-3">
             <button className="flex items-center text-blue-400 mt-3 hover:underline" onClick={handleBack}>
               Back

@@ -1,55 +1,38 @@
+import '../highlight.js';
 import ReactQuill from "react-quill";
+import '../styles/markdown-styles.css'
+import 'react-quill/dist/quill.snow.css'
 
-export default function Editor({ value, onChange }) {
+
+const Font = ReactQuill.Quill.import('formats/font'); // <<<< ReactQuill exports it
+Font.whitelist = ['Sans Serif', 'Monospace', 'Poppins']; // allow ONLY these fonts and the default
+
+const Editor = ({ value, onChange }) => {
   const modules = {
+    syntax: true,
     toolbar: [
-      [{ header: [1, 2, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block'],
+      [{ header: "1" }, { header: "2" }, { font: Font.whitelist }],
+      ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
+      [{ color: [] }, { background: [] }],
+      [{ align: [] }],
       [
-        { list: 'ordered' },
-        { list: 'bullet' },
-        { indent: '-1' },
-        { indent: '+1' },
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
       ],
-      ['link', 'image'],
-      ['clean'],
+      ["link", "image", "video"],
+      [{ script: "sub" }, { script: "super" }],
     ],
   };
+
   return (
-    <div className="content">
-      <ReactQuill
-        value={value}
-        theme={'snow'}
-        onChange={onChange}
-        modules={modules} />
-    </div>
+    <ReactQuill
+      value={value}
+      theme={'snow'}
+      onChange={onChange}
+      modules={modules} />
   );
 }
 
-// import React from "react";
-// import ReactQuill from "react-quill";
-// import EditorToolbar, { modules, formats } from "./pages/EditorToolbar";
-// import "react-quill/dist/quill.snow.css";
-// // import "./styles.css";
-
-// export const Editor = () => {
-//   const [state, setState] = React.useState({ value: null });
-//   const handleChange = value => {
-//     setState({ value });
-//   };
-//   return (
-//     <div className="content">
-//       <EditorToolbar />
-//       <ReactQuill
-//         theme="snow"
-//         value={state.value}
-//         onChange={handleChange}
-//         placeholder={"Write something awesome..."}
-//         modules={modules}
-//         formats={formats}
-//       />
-//     </div>
-//   );
-// };
-
-// export default Editor;
+export default Editor;
