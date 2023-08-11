@@ -23,7 +23,7 @@ const Editor = ({ value, onChange }) => {
       ],
       ["link", "image", "video"],
       [{ script: "sub" }, { script: "super" }],
-    ],
+    ]
   };
 
   return (
@@ -31,7 +31,8 @@ const Editor = ({ value, onChange }) => {
       value={value}
       theme={'snow'}
       onChange={onChange}
-      modules={modules} />
+      modules={modules}
+    />
   );
 }
 
