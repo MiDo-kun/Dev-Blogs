@@ -1,3 +1,25 @@
+.quill .ql-editor {
+  padding: 1rem;
+}
+.ql-editor {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.ql-editor h1 {
+  font-size: 21px !important;
+  margin: 3px 0;
+}
+
+.ql-editor h2 {
+  font-size: 17px !important;
+  margin: 3px 0 5px -.3px;
+  font-weight: 800;
+  z-index: 2 !important;
+}
+
+
 .ql-picker.ql-font {
   .ql-picker-item {
     font-size: 0;
@@ -52,9 +74,9 @@
   white-space: -o-pre-wrap;
   white-space: pre-wrap;
   word-wrap: break-word;
-  font-size: 14px;
-  margin-top: 5px;
-  padding: 8px 11px;
+  font-size: 14px !important;
+  margin-top: 5px !important;
+  padding: 8px 11px !important;
   border-radius: 5px;
 }
 

@@ -89,7 +89,7 @@ const PostPage = () => {
             <h1 className="text-xl font-semibold text-amber-400">{postInfo.title}</h1>
             <div className="text-sm my-1 ml-[.04rem] text-red-500">at {datePosted}</div>
           </div>
-          <div className="text-base text-justify" dangerouslySetInnerHTML={{ __html: postInfo.content}} >
+          <div className="ql-editor" dangerouslySetInnerHTML={{ __html: postInfo.content}} >
           </div>
           <div className="flex justify-between mt-3">
             <button className="flex items-center text-blue-400 mt-3 hover:underline" onClick={handleBack}>
