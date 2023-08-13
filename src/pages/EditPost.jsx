@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import Editor from "../Editor";
 import { useCookies } from "react-cookie";
+import Editor from "../sections/Editor";
 
 export default function EditPost() {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;

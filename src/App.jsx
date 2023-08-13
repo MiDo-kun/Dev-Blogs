@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import Layout from "./Layout";
+import Layout from "./layout/Layout";
 import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import { UserContextProvider } from "./UserContext";
+import { UserContextProvider } from "./context/UserContext";
 import CreatePost from "./pages/CreatePost";
 import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";

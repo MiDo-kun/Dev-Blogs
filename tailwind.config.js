@@ -20,10 +20,12 @@ export default {
       'mobile-sm': { 'max': '384px' },
       'mobile-xs': { 'max': '320px' },
     },
+
     extend: {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
       },
+
       screens: {
         'landscape-tablet-lg': { 'raw': '(max-width: 1366px) and (min-width : 768px) and (orientation : landscape)' },
         'landscape-tablet-md': { 'raw': '(max-width: 1194px) and (min-width : 768px) and (orientation : landscape)' },

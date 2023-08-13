@@ -1,4 +1,4 @@
-import '../highlight.js';
+import '../../highlight.js';
 import ReactQuill from "react-quill";
 import '../styles/markdown-styles.css'
 import 'react-quill/dist/quill.snow.css'
