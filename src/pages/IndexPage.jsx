@@ -1,4 +1,4 @@
-import Post from "../Post";
+import Post from '../sections/Post'
 import { useEffect, useState } from "react";
 
 function getReadingTime(content) {

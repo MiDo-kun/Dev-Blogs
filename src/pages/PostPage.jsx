@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import hljs from 'highlight.js';
-import 'highlightjs-line-numbers.js';
+import ScreenLoader from "../sections/ScreenLoader";
+import CommentSection from "../sections/comments/CommentSection";
 
 const PostPage = () => {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
@@ -14,12 +14,6 @@ const PostPage = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-
-
-  useEffect(() => {
-    hljs.highlightAll();
-    hljs.initLineNumbersOnLoad();
-  })
 
   useEffect(() => {
     const { token } = cookie;
@@ -60,16 +54,11 @@ const PostPage = () => {
     navigate('/');
   };
 
-  if (!postInfo)
-    return (
-      <div className="flex flex-wrap justify-center  mt-5">
-        <svg className="inine-block animate-spin -ml-1 mr-1 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <p className="text-sm text-gray-200">Fetching Content...</p>
-      </div>
-    )
+  // return (<CommentSection />);
+
+  if (!postInfo) {
+    return (<ScreenLoader />)
+  }
 
   return (
     <div className="mx-auto px-[8px] mt-10">
@@ -89,7 +78,7 @@ const PostPage = () => {
             <h1 className="text-xl font-semibold text-amber-400">{postInfo.title}</h1>
             <div className="text-sm my-1 ml-[.04rem] text-red-500">at {datePosted}</div>
           </div>
-          <div className="ql-editor" dangerouslySetInnerHTML={{ __html: postInfo.content}} >
+          <div className="ql-editor" dangerouslySetInnerHTML={{ __html: postInfo.content }} >
           </div>
           <div className="flex justify-between mt-3">
             <button className="flex items-center text-blue-400 mt-3 hover:underline" onClick={handleBack}>
@@ -101,6 +90,8 @@ const PostPage = () => {
               </a>
             )}
           </div>
+
+          <CommentSection />
         </>
       }
     </div>

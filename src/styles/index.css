@@ -18,15 +18,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 
-h2 {
-  font-size: 1.04rem;
-  font-weight: 800;
-  color: #3B82F6;
-  margin-bottom: .5rem;
-  margin-left: -0.1rem;
-} */
-
 #blog-title {
   display: block;
   display: -webkit-box;
@@ -36,10 +27,6 @@ h2 {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 !important;
-}
-
-pre {
-
 }
 
 @media (max-width: 425px) {

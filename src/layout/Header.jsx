@@ -4,7 +4,7 @@ const Header = () => {
     <header className="my-10 mx-auto text-white">
       <div className="flex gap-3">
         <a href={origin}>
-          <img src="/profile.jpg" alt="Profile Picture" className="w-28 h-28 rounded-full border-2 border-slate-400" />
+          <img src="/profile.jpg" alt="Profile Picture" className="w-28 h-28 rounded-full border-2 border-slate-400 hover:ring-2 hover:ring-blue-400" />
         </a>
         <div className="flex flex-col w-2/3 justify-around">
           <div>
