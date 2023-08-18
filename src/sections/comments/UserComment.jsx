@@ -21,7 +21,7 @@ const UserComment = () => {
       <p className="text-[15px] text-gray-300">
         Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
         instruments for the UX designers. The knowledge of the design tools are as important as the
-        creation of the design strategy.;
+        creation of the design strategy.
       </p>
       <div className="flex items-center my-4 space-x-4" >
         <button

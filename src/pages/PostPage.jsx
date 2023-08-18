@@ -17,15 +17,20 @@ const PostPage = () => {
 
   useEffect(() => {
     const { token } = cookie;
-    fetch(BLOG_ENDPOINT + '/auth/profile', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    })
-      .then(response => {
-        response.ok && isAuthenticated(true)
-      }).catch(err => console.log(err))
+    (async () => {
+      const response = await fetch(BLOG_ENDPOINT + '/auth/profile', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      if (!response.ok) {
+        console.clear();
+        return;
+      }
+      isAuthenticated(true);
+    })()
 
     fetch(BLOG_ENDPOINT + `/posts/${id}`)
       .then(response => {

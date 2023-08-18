@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
 import { useCookies } from "react-cookie";
 
 const LoginPage = () => {
@@ -8,7 +7,6 @@ const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const { setUserInfo } = useContext(UserContext);
   const [, setCookie] = useCookies();
 
   async function login(event) {
@@ -22,7 +20,6 @@ const LoginPage = () => {
       response.json().then(userInfo => {
         const maxAge = new Date(new Date().getTime() + userInfo.maxAge);
         setCookie('token', userInfo.token, { expires: maxAge });
-        setUserInfo(userInfo);
         setRedirect(true);
       });
     } else {

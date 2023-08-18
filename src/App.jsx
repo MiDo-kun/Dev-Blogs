@@ -3,7 +3,6 @@ import Layout from "./layout/Layout";
 import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import { UserContextProvider } from "./context/UserContext";
 import CreatePost from "./pages/CreatePost";
 import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";
@@ -14,7 +13,6 @@ import Logout from './pages/LogoutPage';
 function App() {
   return (
     <CookiesProvider>
-      <UserContextProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<IndexPage />} />
@@ -27,7 +25,6 @@ function App() {
             <Route path="/delete/:id" element={<DeletePost />} />
           </Route>
         </Routes>
-      </UserContextProvider>
     </CookiesProvider>
   );
 }
