@@ -1,5 +1,5 @@
 import 'react-quill/dist/quill.snow.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import Editor from '../sections/Editor';
 import { useCookies } from 'react-cookie';
@@ -12,6 +12,18 @@ const CreatePost = () => {
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
   const [cookie] = useCookies();
+
+
+  useEffect(() => {
+    const { token } = cookie;
+    fetch(BLOG_ENDPOINT + '/auth/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    }).then((response) => !response.ok && setRedirect(true));
+  }, [])
+
 
   async function createNewPost(ev) {
     ev.preventDefault();

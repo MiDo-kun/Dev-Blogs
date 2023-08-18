@@ -1,6 +1,7 @@
 import Post from '../sections/Post'
 import { useEffect, useState } from "react";
 
+import ScreenLoader from './../sections/ScreenLoader';
 function getReadingTime(content) {
   const wordsPerMinute = 200; // Average reading speed in words per minute
   const wordCount = content.split(/\s+/).length; // Split the content into words and count them
@@ -11,13 +12,16 @@ function getReadingTime(content) {
 const IndexPage = () => {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
   const postsPerPage = 5;
+  
 
+  const [loaded, isLoaded] = useState(false);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     fetch(BLOG_ENDPOINT + '/posts').then(response => {
       response.json().then(posts => {
+        isLoaded(true);
         setPosts(posts);
       });
     }).catch(() => {
@@ -45,19 +49,18 @@ const IndexPage = () => {
     setCurrentPage(currentPage + 1);
   };
 
+  if (!loaded) {
+    return <ScreenLoader />
+  }
+
   return (
     <>
       {currentPosts.length > 0 ? (
         currentPosts.map(post => (
           <Post key={post._id} {...post} readingTime={getReadingTime(post.content)} />
         ))) :
-        <div className="flex flex-wrap justify-center mt-5">
-          <svg className="inine-block animate-spin -ml-1 mr-1 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <p className="text-sm text-gray-200">Fetching All Blogs...</p>
-        </div>}
+          <h1 className='text-red-400 text-lg'>No Blogs!</h1> 
+        }
       {totalPages > 1 && (
         <div className="flex justify-end gap-2 mt-2">
           <button

@@ -14,6 +14,14 @@ export default function EditPost() {
   const [cookie] = useCookies();
 
   useEffect(() => {
+    const { token } = cookie;
+    fetch(BLOG_ENDPOINT + '/auth/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    }).then((response) => !response.ok && setRedirect(true));
+
     fetch(BLOG_ENDPOINT + '/posts/' + id)
       .then(response => {
         response.json().then(postInfo => {
