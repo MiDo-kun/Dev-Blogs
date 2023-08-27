@@ -2,32 +2,35 @@ import 'react-quill/dist/quill.snow.css';
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import Editor from '../sections/Editor';
-import { useCookies } from 'react-cookie';
+import useAdminAuth from "../hooks/useAdminAuth";
 
-const CreatePost = () => {
+function CreatePost() {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
   const [title, setTitle] = useState('');
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
   const [files, setFiles] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const [cookie] = useCookies();
-
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    const { token } = cookie;
     fetch(BLOG_ENDPOINT + '/auth/profile', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
       },
     }).then((response) => !response.ok && setRedirect(true));
-  }, [])
+  })
 
+
+  const { role } = useAdminAuth(BLOG_ENDPOINT);
+  if (!role) return;
+  if (!role.user === 'admin') {
+    return <Navigate to={'/'} />
+  }
 
   async function createNewPost(ev) {
     ev.preventDefault();
-    const token = cookie.token;
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
@@ -53,18 +56,28 @@ const CreatePost = () => {
 
   return (
     <form onSubmit={createNewPost} className="mt-10 flex flex-col">
-      <input type="title" className="my-1 px-2 py-1"
+      <input type="title"
+        className="block w-full px-3 py-2 mb-4 border rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-base text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
         placeholder={'Title'}
         value={title}
         onChange={ev => setTitle(ev.target.value)} />
-      <input type="summary" className="my-1 px-2 py-1"
+      <input type="summary"
+        className="block w-full px-3 py-2 mb-4 border rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-base text-white focus:ring-blue-500 focus:border-blue-500 outline-none"
         placeholder={'Summary'}
         value={summary}
         onChange={ev => setSummary(ev.target.value)} />
-      <input type="file" className="my-1 text-white"
+      <input type="file"
+        className="block mb-4 w-full text-base  border-[2px] rounded-md cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400e"
         onChange={ev => setFiles(ev.target.files)} />
       <Editor value={content} onChange={setContent} />
-      <button type="submit" onClick={() => alert("Content Sent!")} className="w-1/4 mx-auto mt-5 text-white text-sm rounded-sm px-1 py-1 outline outline-gray-400 hover:text-gray-400" >Create post</button>
+      <div className="mx-auto">
+        <button
+          type="submit"
+          onClick={() => alert("Content Sent!")}
+          className="font-medium rounded-lg text-base px-5 py-2 mt-4 text-center mr-2 mb-2 border-[2px] border-blue-500 text-blue-500 focus:ring-4 focus:outline-none hover:text-white hover:bg-blue-500 focus:ring-blue-800" >
+          Create post
+        </button>
+      </div>
     </form>
   );
 }

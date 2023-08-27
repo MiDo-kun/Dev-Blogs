@@ -1,4 +1,5 @@
 const CommentTextBox = ({ text, rows }) => {
+
   return (
     <form className="mb-6">
       <div className="pt-4 pb-2 px-4 mb-2 bg-inherit rounded-lg rounded-t-lg border border-gray-400">
@@ -8,9 +9,10 @@ const CommentTextBox = ({ text, rows }) => {
           placeholder="Write a comment..." required></textarea>
       </div>
       <button type="submit"
-        className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-yellow-400 border-[1.5px] border-white rounded-md focus:bg-slate-700  hover:ring-2 focus:ring-primary-200">
+        className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-yellow-400 border-[1.5px] border-gray-400 rounded-md focus:bg-slate-700  hover:ring-2 focus:ring-primary-200">
         {text}
       </button>
+
     </form>
   )
 }

@@ -29,8 +29,13 @@ body {
   padding: 0 !important;
 }
 
+button {
+  outline: none;
+}
+
 @media (max-width: 425px) {
   html {
+    font-size: 105% !important;
     zoom: 0.73;
   }
 }

@@ -1,10 +1,12 @@
 import { useState } from "react";
-import useRemoveComment from "../../hooks/useRemoveComment";
+import useAdminAuth from "../../hooks/useAdminAuth";
+import useRemoveReply from "../../hooks/useRemoveReply";
 
-const CommentSettings = ({ commentId, postId }) => {
+const ReplySettings = ({ userId, postId, commentId, replyId }) => {
   const BLOG_ENDPOINT = import.meta.env.VITE_BLOG_ENDPOINT;
-  const removeComment = useRemoveComment(BLOG_ENDPOINT, postId, commentId);
   const [show, showDropdown] = useState(false);
+  const removeReply = useRemoveReply(BLOG_ENDPOINT, postId, commentId);
+  const { role } = useAdminAuth(BLOG_ENDPOINT);
 
   const toggleDropDown = () => {
     showDropdown(!show);
@@ -12,10 +14,10 @@ const CommentSettings = ({ commentId, postId }) => {
 
   function onRemoveComment(event) {
     event.preventDefault();
-    removeComment.mutate();
+    removeReply.mutate(replyId)
   }
 
-  return (
+  return ((role.user === 'admin' || userId === role._id) &&
     <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
       onClick={(toggleDropDown)} className="inline-flex p-2 text-sm font-medium text-center text-gray-400 rounded-lg outline-none hover:text-blue-400"
       type="button">
@@ -25,7 +27,6 @@ const CommentSettings = ({ commentId, postId }) => {
           d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
         </path>
       </svg>
-
       {show &&
         <div className="mt-4 -ml-36">
           <div id="dropdownComment1" className="absolute  z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow"> <ul className="py-1 text-sm text-gray-700 dark:text-gray-200"
@@ -43,4 +44,4 @@ const CommentSettings = ({ commentId, postId }) => {
   )
 }
 
-export default CommentSettings;
+export default ReplySettings;

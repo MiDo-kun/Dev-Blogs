@@ -1,9 +1,7 @@
-import { useCookies } from 'react-cookie';
 import { Navigate } from 'react-router-dom';
 
 const Logout = () => {
-  const [, , removeCookie] = useCookies();
-  removeCookie('token');
+  localStorage.setItem('token', '');
   return <Navigate to={'/'} />
 }
 
