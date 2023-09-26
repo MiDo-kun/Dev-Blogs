@@ -5,7 +5,7 @@ import 'react-quill/dist/quill.snow.css'
 
 
 const Font = ReactQuill.Quill.import('formats/font'); // <<<< ReactQuill exports it
-Font.whitelist = ['Sans Serif', 'Monospace', 'Poppins']; // allow ONLY these fonts and the default
+Font.whitelist = ['Poppins', 'Sans Serif', 'Monospace', 'RobotoMono']; // allow ONLY these fonts and the default
 
 const Editor = ({ value, onChange }) => {
   const modules = {
