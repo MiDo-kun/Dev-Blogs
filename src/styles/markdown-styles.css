@@ -1,6 +1,8 @@
 .quill .ql-editor {
   padding: 1rem;
+  max-height: 480px !important;
 }
+
 .ql-editor {
   margin: 0;
   padding: 0;
