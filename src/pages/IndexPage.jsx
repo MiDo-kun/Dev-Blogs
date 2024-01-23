@@ -17,6 +17,10 @@ function IndexPage() {
     return (<ScreenLoader />)
   }
 
+  if (posts.length === 0) {
+    return <h1 className='ml-1 text-red-500'>No Blogs!</h1>;
+  }
+
   if (posts) {
     return (
       <>
@@ -30,10 +34,6 @@ function IndexPage() {
         {posts.map((post) => {
           return (<Post key={post._id} {...post} />)
         })}
-
-        {posts.length === 0 &&
-          <h1 className='ml-1 text-red-500'>No Blogs!</h1>
-        }
 
         {/* Pagination */}
         < div className="flex justify-end gap-2 mt-2" >
@@ -60,7 +60,6 @@ function IndexPage() {
       </>
     );
   }
-
 }
 
 export default IndexPage;
