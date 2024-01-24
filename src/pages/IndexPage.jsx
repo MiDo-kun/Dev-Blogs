@@ -17,19 +17,19 @@ function IndexPage() {
     return (<ScreenLoader />)
   }
 
+  {/* Update Meta Tags */ }
+  // <MetaData title={"Dev Blogs"} />
+
+  {/* Search Bar Input*/ }
+  // <SearchBar />
+
   if (posts.length === 0) {
     return <h1 className='ml-1 text-red-500'>No Blogs!</h1>;
   }
 
-  if (posts) {
+  if (posts.length > 0) {
     return (
       <>
-        {/* Update Meta Tags */}
-        <MetaData title={"Dev Blogs"} />
-        
-        {/* Search Bar Input*/}
-        <SearchBar />
-
         {/* Get All Posts */}
         {posts.map((post) => {
           return (<Post key={post._id} {...post} />)
